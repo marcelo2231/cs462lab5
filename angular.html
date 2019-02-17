@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+  <title>Temperature</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="temperature.js"></script>
+  <style type="text/css">
+    span.finished { cursor: pointer; color: blue; text-decoration: underline; }
+    div.eci input { visibility: hidden; }
+    div.eci:hover input { visibility: visible; }
+  </style>
+</head>
+<body ng-app="timing" ng-controller="MainCtrl">
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+<div class="page-header"> 
+  <h1>Temperature</h1>
+</div>
+  <p> Current Temperature </p>
+  <div>
+	Temperature: {{currentTemperature.temperature}} ( --- ) 
+	Timestamp: {{currentTemperature.timestamp}}
+  </div>
+  
+  <form ng-submit="getTemperatures()" style = "margin-top:30px;">
+    <button type="submit">Get Temperatures</button>
+  </form>
+  <div ng-repeat="temperature in temperatures">
+	Temperature: {{temperature.temperature}} ( --- ) 
+	Timestamp: {{temperature.timestamp}}
+  </div>
+  
+  <form ng-submit="getThreadshold()" style = "margin-top:30px;">
+    <button type="submit">Get Threadshold</button>
+  </form>
+  <div ng-repeat="threadshold in threadsholds">
+	Temperature: {{threadshold.temperature}} ( --- ) 
+	Timestamp: {{threadshold.timestamp}}
+  </div>
+
+  <form ng-submit="submitProfile()" style = "margin-top:30px;">
+	<input type="text" ng-model="location" placeholder="location"></input>
+	<input type="text" ng-model="name" placeholder="name"></input>
+	<input type="text" ng-model="threshold" placeholder="threshold"></input>
+	<input type="text" ng-model="number" placeholder="number"></input>
+    <button type="submit">Save Profile</button>
+  </form>
+  <form ng-submit="getProfile()" style = "margin-top:30px;">
+    <button type="submit">Get Profile</button>
+  </form>
+  <div>
+	<p>Profile</p>
+	Location: {{profile.location}} ( --- ) 
+	Name: {{profile.name}}  ( --- ) 
+	Threshold: {{profile.threshold}}  ( --- ) 
+	Number: {{profile.number}}
+  </div>
+  
+  
+  <div class="eci">
+    <input type="text" ng-model="eci" size="29"><-- ECI</input>
+  </div>
+</div>
+</div>
+</body>
+</html>
