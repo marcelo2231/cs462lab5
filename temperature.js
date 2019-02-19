@@ -31,7 +31,7 @@ angular.module('timing', [])
     $scope.getTemperatures = function() {
       return $http.get(gURL).then(function(data){
         angular.copy(data.data, $scope.temperatures);
-        angular.copy(data.data[0], $scope.currentTemperature);
+        angular.copy(data.data[data.data.length - 1], $scope.currentTemperature);
       });
     };
 	
